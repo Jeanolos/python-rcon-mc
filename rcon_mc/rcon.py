@@ -10,8 +10,7 @@
      -- adapted for use with minecraft, but a great starter
 """
 import struct
-from types import StringType, IntType
-import lib.msocket as msocket
+import rcon_mc.lib.msocket as msocket
 
 
 # Module Declarations:
@@ -45,13 +44,13 @@ class client:
         self.error_stack = []
         self.id = 0
         self.authenticated = False
-        assert type(self.host) is StringType, "{m}{h}".format(
+        assert isinstance(self.host, str), "{m}{h}".format(
             m="hostname is not a string:",
             h=self.host)
-        assert type(self.port) is IntType, "{m}{p}".format(
+        assert isinstance(self.port, int), "{m}{p}".format(
             m="port is not a number:",
             p=self.port)
-        assert type(self.password) is StringType, "password is not a string"
+        assert isinstance(self.password, str), "password is not a string"
         try:
             self.connection = msocket.msocket(self.host, self.port)
         except(msocket.error) as ret_val:
